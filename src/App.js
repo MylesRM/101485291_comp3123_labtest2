@@ -9,14 +9,15 @@ function App() {
     const [weather, setWeather] = useState(null);
     //Fetches wather data from API
     useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b3da31648740dbf7db2cbdcfafc67691`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_KEY}`)
             .then(res => res.json())
             .then(data => {
                 console.log("API response:", data);
                 setWeather(data);
             })
-            .catch(err => console.error("Fetch error:", err)); //Debugging
+            .catch(err => console.error("Fetch error:", err));
     }, [city]);
+
 
     return (
         <div className="app">
